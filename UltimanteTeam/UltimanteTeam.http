@@ -1,0 +1,6 @@
+@UltimanteTeam_HostAddress = http://localhost:5106
+
+GET {{UltimanteTeam_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
