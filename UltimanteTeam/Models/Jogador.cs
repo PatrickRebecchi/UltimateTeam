@@ -1,4 +1,6 @@
-﻿namespace UltimanteTeam.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace UltimanteTeam.Models;
 
 public class Jogador    
 {
@@ -10,6 +12,8 @@ public class Jogador
 
 
     public int TimeId { get; set; }
+
+    [JsonIgnore]
     public Times Time { get; set; }
 }
 
