@@ -21,4 +21,26 @@ public class TimesController : Controller
     {   
         return await _context.Times.ToListAsync();
     }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Times>> GetTime(int id)
+    {
+        var time = await _context.Times
+            .Include(t => t.Jogador)
+            .FirstOrDefaultAsync(t => t.Id == id);
+        if (time == null)
+        {
+            return NotFound();
+        }
+        return time;
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<Times>> PostTime(Times time)
+    {
+        _context.Times.Add(time);
+        await _context.SaveChangesAsync();
+        return CreatedAtAction(nameof(GetTime), new { id = time.Id }, time);
+    }
+
 }
